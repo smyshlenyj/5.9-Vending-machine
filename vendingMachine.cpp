@@ -1,35 +1,35 @@
 #include "vendingMachine.h"
 
-	VendingMachine::VendingMachine(int id, int capacity)
-	{
-		this->id = id;
-		this->capacity = capacity;
-	}
+VendingMachine::VendingMachine(int id, int capacity)
+{
+	this->id = id;
+	this->capacity = capacity;
+}
 
-	void VendingMachine::AddSlot(Slot& other)
+void VendingMachine::AddSlot(Slot& other)
+{
+	if (capacity >= loadedQuantity + 1)
 	{
-		if (capacity >= loadedQuantity + 1)
-		{
-			this->loadedQuantity += 1;
-			this->freeSpace = this->capacity - this->loadedQuantity;
-			loadedSlots.push_back(other);
-			std::cout << "В вендинговый аппарат загружен слот ID_" << loadedSlots.back().getId() <<
-				", осталось незанятых слотов: " << this->freeSpace << std::endl;
-		}
-		else
-			std::cout << "Попытка загрузить больше, чем доступно свободного места" << std::endl;
+		this->loadedQuantity += 1;
+		this->freeSpace = this->capacity - this->loadedQuantity;
+		loadedSlots.push_back(other);
+		std::cout << "Р’ РІРµРЅРґРёРЅРіРѕРІС‹Р№ Р°РїРїР°СЂР°С‚ Р·Р°РіСЂСѓР¶РµРЅ СЃР»РѕС‚ ID_" << loadedSlots.back().getId() <<
+			", РѕСЃС‚Р°Р»РѕСЃСЊ РЅРµР·Р°РЅСЏС‚С‹С… СЃР»РѕС‚РѕРІ: " << this->freeSpace << std::endl;
 	}
+	else
+		std::cout << "РџРѕРїС‹С‚РєР° Р·Р°РіСЂСѓР·РёС‚СЊ Р±РѕР»СЊС€Рµ, С‡РµРј РґРѕСЃС‚СѓРїРЅРѕ СЃРІРѕР±РѕРґРЅРѕРіРѕ РјРµСЃС‚Р°" << std::endl;
+}
 
-	int VendingMachine::getLevelOfLoad()
-	{
-		int loaded = 0;
-		for (Slot slot : this->loadedSlots)
-			loaded += slot.getLoadedQuantity();
+int VendingMachine::getLevelOfLoad()
+{
+	int loaded = 0;
+	for (Slot slot : this->loadedSlots)
+		loaded += slot.getLoadedQuantity();
 
-		return loaded;
-	}
+	return loaded;
+}
 
-	void VendingMachine::sellSnack(int slot)
-	{
-		this->loadedSlots[slot].receiveSnack();
-	}
+void VendingMachine::sellSnack(int slot)
+{
+	this->loadedSlots[slot].receiveSnack();
+}

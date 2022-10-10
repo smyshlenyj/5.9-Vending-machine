@@ -1,4 +1,4 @@
-﻿#include "snack.h"
+#include "snack.h"
 #include "slot.h"
 #include "vendingMachine.h"
 
@@ -10,7 +10,7 @@ int main()
 
 	Snack* snickers = new Snack("Snickers", 100, 77);
 	Snack* mars = new Snack("Mars", 100, 77);
-	
+
 	// testing Snack getters and setters
 	std::cout << "testing Snack getters and setters" << std::endl;
 	std::cout << "Цена " << mars->getName() << " = " << mars->getPrice() << std::endl;
@@ -22,7 +22,7 @@ int main()
 
 	// creating new slots and filling them with snacks
 	std::cout << "creating new slots and filling them with snacks" << std::endl;
-	Slot* snackSlot = new Slot(0,15);
+	Slot* snackSlot = new Slot(0, 15);
 	snackSlot->AddSnack(*snickers);
 	snackSlot->AddSnack(*snickers);
 	snackSlot->AddSnack(*snickers);

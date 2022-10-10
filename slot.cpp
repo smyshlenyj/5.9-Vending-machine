@@ -3,35 +3,35 @@
 #include <vector>
 #include <iostream>
 
-	Slot::Slot(int id, int capacity)
-	{
-		this->id = id;
-		this->capacity = capacity;
-	}
+Slot::Slot(int id, int capacity)
+{
+	this->id = id;
+	this->capacity = capacity;
+}
 
-	void Slot::AddSnack(Snack& other)
+void Slot::AddSnack(Snack& other)
+{
+	if (this->capacity >= this->loadedQuantity + 1 && ((loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() == other.getName()) || loadedQuantity == 0))
 	{
-		if (this->capacity >= this->loadedQuantity + 1 && ((loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() == other.getName()) || loadedQuantity == 0))
-		{
-			this->loadedQuantity += 1;
-			this->freeSpace = this->capacity - this->loadedQuantity;
-			this->loadedSnacks.push_back(other);
-			std::cout << "Â ñëîò " << this->id << " çàãðóæåíà 1 øò. " << this->loadedSnacks.back().getName() <<
-				", îñòàëîñü ñâîáîäíîãî ìåñòà : " << this->freeSpace << std::endl;
-		}
-		else if (loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() != other.getName())
-			std::cout << "Îøèáêà çàãðóçêè ñëîòà - êîíôëèêò òîâàðîâ!" << std::endl;
-		else
-			std::cout << "Ïîïûòêà çàãðóçèòü áîëüøå, ÷åì äîñòóïíî ñâîáîäíîãî ìåñòà" << std::endl;
+		this->loadedQuantity += 1;
+		this->freeSpace = this->capacity - this->loadedQuantity;
+		this->loadedSnacks.push_back(other);
+		std::cout << "Ð’ ÑÐ»Ð¾Ñ‚ " << this->id << " Ð·Ð°Ð³Ñ€ÑƒÐ¶ÐµÐ½Ð° 1 ÑˆÑ‚. " << this->loadedSnacks.back().getName() <<
+			", Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¼ÐµÑÑ‚Ð° : " << this->freeSpace << std::endl;
 	}
+	else if (loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() != other.getName())
+		std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ ÑÐ»Ð¾Ñ‚Ð° - ÐºÐ¾Ð½Ñ„Ð»Ð¸ÐºÑ‚ Ñ‚Ð¾Ð²Ð°Ñ€Ð¾Ð²!" << std::endl;
+	else
+		std::cout << "ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð±Ð¾Ð»ÑŒÑˆÐµ, Ñ‡ÐµÐ¼ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð¾ ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¼ÐµÑÑ‚Ð°" << std::endl;
+}
 
-	void Slot::receiveSnack()
+void Slot::receiveSnack()
+{
+	if (this->loadedQuantity > 0)
 	{
-		if (this->loadedQuantity > 0)
-		{
-			loadedSnacks.pop_back();
-			--loadedQuantity;
-		}
-		else
-			std::cout << "Ïîïûòêà ïîëó÷èòü òîâàð, êîòîðîãî íåò â íàëè÷èè" << std::endl;
+		loadedSnacks.pop_back();
+		--loadedQuantity;
 	}
+	else
+		std::cout << "ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ñ‚Ð¾Ð²Ð°Ñ€, ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð½ÐµÑ‚ Ð² Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð¸" << std::endl;
+}
