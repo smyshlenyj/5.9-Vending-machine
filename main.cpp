@@ -26,10 +26,6 @@ int main()
 	snackSlot->AddSnack(*snickers);
 	snackSlot->AddSnack(*snickers);
 	snackSlot->AddSnack(*snickers);
-	snackSlot->AddSnack(*snickers);
-	snackSlot->AddSnack(*snickers);
-	snackSlot->AddSnack(*snickers);
-	snackSlot->AddSnack(*snickers);
 	snackSlot->AddSnack(*mars);
 	snackSlot->AddSnack(*snickers);
 	snackSlot->AddSnack(*snickers);
