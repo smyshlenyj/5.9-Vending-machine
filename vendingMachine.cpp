@@ -6,7 +6,7 @@ VendingMachine::VendingMachine(int id, int capacity)
 	this->capacity = capacity;
 }
 
-void VendingMachine::AddSlot(Slot& other)
+void VendingMachine::addSlot(Slot& other)
 {
 	if (capacity >= loadedQuantity + 1)
 	{

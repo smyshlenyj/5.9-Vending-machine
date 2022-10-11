@@ -9,7 +9,7 @@ Slot::Slot(int id, int capacity)
 	this->capacity = capacity;
 }
 
-void Slot::AddSnack(Snack& other)
+void Slot::addSnack(Snack& other)
 {
 	if (this->capacity >= this->loadedQuantity + 1 && ((loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() == other.getName()) || loadedQuantity == 0))
 	{

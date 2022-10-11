@@ -12,9 +12,9 @@ class VendingMachine
 
 public:
 	VendingMachine(int id, int capacity);
-	void AddSlot(Slot& other); // add slot to vending machine
+	void addSlot(Slot& other); 
 	int getEmptySlotsCount() { return this->freeSpace; }
 	int getId() { return this->id; };
-	int getLevelOfLoad(); // get quantity of loaded snacks
+	int getLevelOfLoad();
 	void sellSnack(int slot);
 };

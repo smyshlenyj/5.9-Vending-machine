@@ -11,7 +11,7 @@ class Slot
 
 public:
 	Slot(int id, int capacity);
-	void AddSnack(Snack&); // load snack to slot
+	void addSnack(Snack&);
 	int getId() { return id; }
 	int getLoadedQuantity() { return loadedQuantity; }
 	void receiveSnack();
