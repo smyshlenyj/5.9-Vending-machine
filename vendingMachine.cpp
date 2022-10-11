@@ -14,7 +14,7 @@ void VendingMachine::AddSlot(Slot& other)
 		this->freeSpace = this->capacity - this->loadedQuantity;
 		loadedSlots.push_back(other);
 		std::cout << "В вендинговый аппарат загружен слот ID_" << loadedSlots.back().getId() <<
-			", осталось незанятых слотов: " << this->freeSpace << std::endl;
+			", осталось незанятых мест под слоты: " << this->freeSpace << std::endl;
 	}
 	else
 		std::cout << "Попытка загрузить больше, чем доступно свободного места" << std::endl;
