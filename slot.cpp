@@ -5,33 +5,40 @@
 
 Slot::Slot(int id, int capacity)
 {
-	this->id = id;
-	this->capacity = capacity;
+	_id = id;
+	_capacity = capacity;
 }
 
-void Slot::addSnack(Snack& other)
+void Slot::addSnack(Snack* snack)
 {
-	if (this->capacity >= this->loadedQuantity + 1 && ((loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() == other.getName()) || loadedQuantity == 0))
+	if (_capacity >= _loadedQuantity + 1 && ((loadedSnacks.size() > 0 && loadedSnacks[0]->getName() == snack->getName()) || _loadedQuantity == 0))
 	{
-		this->loadedQuantity += 1;
-		this->freeSpace = this->capacity - this->loadedQuantity;
-		this->loadedSnacks.push_back(other);
-		std::cout << "В слот " << this->id << " загружена 1 шт. " << this->loadedSnacks.back().getName() <<
-			", осталось свободного места : " << this->freeSpace << std::endl;
+		_loadedQuantity += 1;
+		_freeSpace = _capacity - _loadedQuantity;
+		loadedSnacks.push_back(snack);
+		std::cout << "В слот " << _id << " загружена 1 шт. " << loadedSnacks.back()->getName() <<
+			", осталось свободного места : " << _freeSpace << std::endl;
 	}
-	else if (loadedSnacks.size() > 0 && this->loadedSnacks[0].getName() != other.getName())
+	else if (loadedSnacks.size() > 0 && loadedSnacks[0]->getName() != snack->getName())
+	{
 		std::cout << "Ошибка загрузки слота - конфликт товаров!" << std::endl;
+	}
 	else
+	{
 		std::cout << "Попытка загрузить больше, чем доступно свободного места" << std::endl;
+	}
+	//std::cout << loadedSnacks.back() << "\n";
 }
 
 void Slot::receiveSnack()
 {
-	if (this->loadedQuantity > 0)
+	if (_loadedQuantity > 0)
 	{
 		loadedSnacks.pop_back();
-		--loadedQuantity;
+		--_loadedQuantity;
 	}
 	else
+	{
 		std::cout << "Попытка получить товар, которого нет в наличии" << std::endl;
+	}
 }

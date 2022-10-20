@@ -1,12 +1,12 @@
 #include <iostream>
 #include "snack.h"
 
-Snack::Snack(std::string name, int weight, double price)
-	: name(name), weight(weight), price(price)
+Snack::Snack(const std::string& name, int weight, double price)
+	: _name(name), _weight(weight), _price(price)
 {
 }
 
 void Snack::setPrice(double newPrice)
 {
-	this->price = newPrice;
+	_price = newPrice;
 }

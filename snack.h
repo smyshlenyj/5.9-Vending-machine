@@ -3,13 +3,14 @@
 
 class Snack
 {
-	std::string name;
-	int weight;
-	double price;
+private:
+	const std::string _name;
+	int _weight;
+	double _price;
 
 public:
-	Snack(std::string name, int weight, double price);
-	std::string getName() { return name; }
-	double getPrice() { return price; };
+	Snack(const std::string& name, int weight, double price);
+	std::string getName() const { return _name; }
+	double getPrice() const { return _price; };
 	void setPrice(double newPrice);
 };

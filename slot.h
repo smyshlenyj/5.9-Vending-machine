@@ -3,16 +3,17 @@
 
 class Slot
 {
-	int id = 0;
-	int capacity = 0;
-	int loadedQuantity = 0;
-	int freeSpace = 0;
-	std::vector<Snack> loadedSnacks;
+public:
+	int _id = 0;
+	int _capacity = 0;
+	int _loadedQuantity = 0;
+	int _freeSpace = 0;
+	std::vector<Snack*> loadedSnacks;
 
 public:
 	Slot(int id, int capacity);
-	void addSnack(Snack&);
-	int getId() { return id; }
-	int getLoadedQuantity() { return loadedQuantity; }
+	void addSnack(Snack* other);
+	int getId() const { return _id; }
+	int getLoadedQuantity() const { return _loadedQuantity; }
 	void receiveSnack();
 };

@@ -2,34 +2,38 @@
 
 VendingMachine::VendingMachine(int id, int capacity)
 {
-	this->id = id;
-	this->capacity = capacity;
+	_id = id;
+	_capacity = capacity;
 }
 
-void VendingMachine::addSlot(Slot& other)
+void VendingMachine::addSlot(Slot* slot)
 {
-	if (capacity >= loadedQuantity + 1)
+	if (_capacity >= _loadedQuantity + 1)
 	{
-		this->loadedQuantity += 1;
-		this->freeSpace = this->capacity - this->loadedQuantity;
-		loadedSlots.push_back(other);
-		std::cout << "В вендинговый аппарат загружен слот ID_" << loadedSlots.back().getId() <<
-			", осталось незанятых мест под слоты: " << this->freeSpace << std::endl;
+		_loadedQuantity += 1;
+		_freeSpace = _capacity - _loadedQuantity;
+		loadedSlots.push_back(slot);
+		std::cout << "В вендинговый аппарат загружен слот ID_" << loadedSlots.back()->getId() <<
+			", осталось незанятых мест под слоты: " << _freeSpace << std::endl;
 	}
 	else
+	{
 		std::cout << "Попытка загрузить больше, чем доступно свободного места" << std::endl;
+	}
 }
 
-int VendingMachine::getLevelOfLoad()
+int VendingMachine::getLevelOfLoad() const
 {
 	int loaded = 0;
-	for (Slot slot : this->loadedSlots)
-		loaded += slot.getLoadedQuantity();
+	for (Slot* slot : loadedSlots)
+	{
+		loaded += slot->getLoadedQuantity();
+	}
 
 	return loaded;
 }
 
 void VendingMachine::sellSnack(int slot)
 {
-	this->loadedSlots[slot].receiveSnack();
+	loadedSlots[slot]->receiveSnack();
 }
